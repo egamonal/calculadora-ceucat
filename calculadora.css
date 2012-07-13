@@ -1,0 +1,126 @@
+body {
+    font-family:Arial, verdana, helvetica, 'sans-serif';
+    font-size:13px;
+    line-height:1.5em;
+}
+h1 {
+    font-size:3em;
+    color:#557C95;
+}
+
+h2 {
+    margin:0px 0 15px 0;
+    font-size:2em;
+    color:#557C95;
+}
+
+h2#titol-credits {
+    margin:15px 0 15px 0;
+    font-size:2em;
+    color:#557C95;
+}
+
+h3 {
+    color:#557C95;
+}
+
+.lead {
+    font-size:1.6em;
+}
+
+#col-esquerra {
+    width:300px;
+    margin-right:10px;
+    float:left;
+    
+}
+
+#calculadora {
+    border:1px solid silver;
+    width:95%;
+    margin-bottom:10px;
+    padding:10px;
+}
+
+#discurs {
+    width:100%;
+    clear:both;
+}
+
+#resultats {
+    width:590px;
+    border:1px solid silver;
+    float:left;
+    margin-left:10px;
+    padding:10px;
+}
+
+#wrapper {
+    max-width: 950px;// mida del genweb
+    margin: 0 auto;
+}
+
+input{
+    width:100px;
+    text-align:right;
+    margin: 2px 0;
+    border:1px solid #bbb;
+}
+
+input#carreresInput {
+    width:100%;
+    text-align:left;
+    margin: 2px 0;
+}
+
+label {
+    float:left;
+    display:inline-block;
+    width:120px;
+}
+
+label#carreresLabel {
+    width:100%;
+}
+
+.resultat {
+    font-weight:bold;
+}
+
+.gran  {
+    font-size: 2em;
+    font-weight:bold;
+}
+
+.botons {
+    text-align:right;
+    width:100%;
+}
+#botoCalc {
+    margin-top:10px;
+    padding: 10px 50px;
+    width:100px;
+    font-weight: bold;
+    text-align:center
+}
+
+.error{  
+    margin-bottom: 20px;  
+    display:block;
+	color: red;
+} 
+
+.taula-increments {
+    border-collapse:collapse;
+    border: 1px solid silver;
+    margin: 5px auto;
+}
+
+.taula-increments th, .taula-increments td {
+border: 1px solid silver;
+padding:10px;
+}
+
+.taula-increments theader, .taula-increments.col1 {
+    font-weight:bold;
+}

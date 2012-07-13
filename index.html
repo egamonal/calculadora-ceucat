@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<!--
+    This file is part of Calculadora-CdE
+
+    Calculadora-CdE is free software: you can redistribute it and/or modify
+    it under the terms of the Affero GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+
+    Calculadora-CdE is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    Affero GNU General Public License for more details.
+
+    You should have received a copy of the Affero GNU General Public License
+    along with Calculadora-CdE.  If not, see <http://www.gnu.org/licenses/>.
+   
+    1.0 23 April 2012
+
+    © Copyright 2012
+    Eduard Gamonal <eduard.gamonal at est.fib.upc dot edu>
+    Jordi Nonell <jordi.nopa at gmail dot com>
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="calculadora.css" type="text/css">
+	<!--<script src="lib/jquery.js" type="text/javascript"></script>-->
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<script src="lib/carreres.js" type="text/javascript"></script>
+    <script src="lib/validation.js" type="text/javascript"></script>
+	<meta content="Calculadora de preus de matr&iacute;cula per a la universitat (p&uacute;blica) pel curs 2012-13" name="description">
+    <meta property="og:title" content="Calculadora d'increment del preu de la matrícula" />
+    <meta property="og:description" content="El proper curs les matrícules universitàries s'encariran més d'un 66% (p.ex. de 770€/quadrimestre a 1280€). Amb aquesta calculadora pots aproximar quant hauràs de pagar." />
+</head>
+
+<body>
+<div id="wrapper">
+    <!--<h1>Calculadora de preus de matr&iacute;cula</h1>
+    <p class="lead">Calcula com ha crescut la <em>barrera econ&ograve;mica</em> per accedir a la universitat p&uacute;blica.</p>
+    <div id="discurs">
+        <p>El Consell de Ministres de l'estat espanyol ha aprovat un 
+        <a href="http://boe.es/boe/dias/2012/04/21/pdfs/BOE-A-2012-5337.pdf">reial decret - llei</a> 
+        que permet a les comunitats autònomes pujar l'import de les matrícules
+        dels estudis universitaris fins el 25% (segons els <em>seus</em>
+         càlculs) del cost de la universitat.</p>
+        <p>Ara és el moment de la <em>Generalitat</em>, que ha decidir quin augment 
+        de preus aplica.</p>
+        <p>Aquí teniu un simulador per calcular <strong>quant us 
+        pot arribar a costar la matrícula el curs vinent</strong>. De moment el 
+        CEUCAT <a href="http://www.ceucat.cat/noticies/els-universitaris-catalans-s2019oposen-a-les-mesures-anunciades-pel-ministre-wert">ja s'ha oposat a aquest <strong>augment absolutament 
+        desproporcionat</strong></a>.</p><p>A mesura que la Generalitat vagi concretant més dades, anirem actualitzant aquest simulador.</p>
+    </div>-->
+    
+    <div id="col-esquerra">
+        <div id="calculadora">
+            <form method="POST" id="calculadoraForm"  action="#">
+                <h2>Pla d'estudis</h2>
+                
+                <div>
+                    <label for="carreresInput" id="carreresLabel">Quina carrera fas?</label>
+                    <input id="carreresInput" >
+                    <span id="carreraInfo"></span>  
+                </div>
+
+                <h2 id="titol-credits">Cr&egrave;dits a matricular</h2>
+                <div>
+                    <label for="credits1">1a vegada</label>
+                    <input type="text" value="" size="15" id="credits1" name="credits1">
+                    <span id="credits1Info"></span>
+                </div>
+                
+                <div>
+                    <label for="credits2">2a vegada</label>
+                    <input type="text" value="" size="15" id="credits2" name="credits2">
+                    <span id="credits2Info"></span>
+
+                </div>
+                
+                <div>
+                    <label for="credits3">3a vegada</label>
+                    <input type="text" value="" size="15" id="credits3" name="credits3">
+                    <span id="credits3Info"></span>  
+                </div>
+                
+                <div>
+                    <label for="credits4">4a vegada o m&eacute;s</label>
+                    <input type="text" value="" size="15" id="credits4" name="credits4">
+                    <span id="credits4Info"></span>  
+                </div>
+				
+				<div>
+                    <label for="tipusMatricula">Matrícula</label>
+					<select id="tipusMatricula" name="tipusMatricula">
+					  <option value="quadrimestral">Quadrimestral</option>
+					  <option value="semestral">Semestral</option>
+					  <option value="anual">Anual</option>
+					</select> 
+                </div>
+                
+                <div class="botons">
+                    <input type="button" value="Calcula" id="botoCalc" name="botoCalc">
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div id="resultats">
+        <h2>Import de la propera matrícula </h2>
+        <p>Entre <span id="resultat-import-min" class="gran" >_________</span> i <span id="resultat-import-max" class="gran">_________</span></p>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ceucat.cat/calculadora" data-lang="en" data-text="Amb la calculadora de preus sé quant pagaré a la propera matrícula: un 66% més. Aturem les barreres econòmiques">Tweet</a>
+        <div class="fb-like" data-href="http://www.ceucat.cat/calculadora" data-send="true" data-width="620" data-show-faces="false" data-font="arial"></div>
+        
+        <p>Si el govern opta per la <em>banda baixa</em> de la forquilla de preus, hauràs de pagar aproximadament <span id="resultat-import-min-p" class="resultat">______</span>. Si opta per la <em>banda alta</em>, <span id="resultat-import-max-p" class="resultat">______</span>.</p>
+        <p>Fantàstic, oi? Comparteix-ho al Facebook i ajuda'ns a fer pressió per tenir una universitat pública al servei de la societat.
+        <a name="fb_share">Comparteix</a> 
+
+        </p>
+        <h3>Desglossament</h3>
+        <p>
+            Assumint la pujada mínima:
+           <ul>
+            <li>Crèdits de 1a vegada: <span class="resultat-cr1 resultat"></span> &mdash; <span id="resultat-min-cr1-import" class="resultat"></span></li>
+            <li>Crèdits de 2a vegada: <span class="resultat-cr2 resultat"></span> &mdash; <span id="resultat-min-cr2-import" class="resultat"></span></li>
+            <li>Crèdits de 3a vegada: <span class="resultat-cr3 resultat"></span> &mdash; <span id="resultat-min-cr3-import" class="resultat" ></span></li>
+            <li>Crèdits de 4a vegada i successives: <span class="resultat-cr4 resultat"></span> &mdash; <span id="resultat-min-cr4-import" class="resultat"></span></li>
+            <li>Taxes pròpies: matrícula <span class="resultat-quadris resultat">______</span> &mdash;  <span class="resultat-taxes resultat">______</span></li>
+           </ul>
+           
+           Assumint la pujada màxima:
+            <ul>
+            <li>Crèdits de 1a vegada: <span class="resultat-cr1 resultat"></span> &mdash; <span id="resultat-max-cr1-import" class="resultat"></span></li>
+            <li>Crèdits de 2a vegada: <span class="resultat-cr2 resultat"></span> &mdash; <span id="resultat-max-cr2-import" class="resultat"></span></li>
+            <li>Crèdits de 3a vegada: <span class="resultat-cr3 resultat"></span> &mdash; <span id="resultat-max-cr3-import" class="resultat"></span></li>
+            <li>Crèdits de 4a vegada i successives: <span class="resultat-cr4 resultat"></span> &mdash; <span id="resultat-max-cr4-import" class="resultat"></span></li>
+            <li>Taxes pròpies: matrícula <span class="resultat-quadris resultat">______</span> &mdash; <span class="resultat-taxes resultat" >______</span></li>
+           </ul>
+        </p>
+        <!--<h3>Càlcul</h3>
+        <p>S'ha fet amb les següents dades:
+            <ul>
+                <li>Supòsit (fals) del govern: l'estudiant paga el <b>15%</b> del cost. Això surt de fer una divisió trivial pressupost/numEstudiants.</li>
+                <li>En el curs actual 1 crèdit de <span id="resultat-carrera" class="resultat"></span> té un preu de <span id="resultat-preu-credit" class="resultat"></span>.</li>
+                <li>El govern de l'estat espanyol ha escrit al BOE uns increments i una forquilla de preus que pot utilitzar la Generalitat.
+                El denominador és el supòsit del 15%. Així, pots llegir la primera columna com <i>El preu dels crèdits que matriculi per primera vegada serà o el que pago ara (15/15) o el 25% (25/15) del cost (fals) dels estudis</i>
+                    <table class="taula-increments">
+                      <tbody>
+                        <tr>
+                          <th></th>
+                          <th>1</th>
+                          <th>2</th>
+                          <th>3</th>
+                          <th>4</th>
+                        </tr>
+                        <tr>
+                          <td class="taula-increments col1">mín</td>
+                          <td>15/15</td>
+                          <td>30/15</td>
+                          <td>65/15</td>
+                          <td>90/15</td>
+                        </tr>
+                        <tr>
+                          <td class="taula-increments col1">màx</td>
+                          <td>25/15</td>
+                          <td>40/15</td>
+                          <td>75/15</td>
+                          <td>100/15</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </li>
+                <li>Les taxes pròpies de cada universitat es paguen només un cop l'any i són iguals en totes. S'ha fet aquesta aproximació perquè són 1 o 2 ordres de magnitud menors que l'import de la matrícula.</li>
+                <li>IPC = 1.9%.</li>
+            </ul>
+        </p>-->
+    </div>
+</div>
+</body>
+</html>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ca_ES/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
