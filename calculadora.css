@@ -60,11 +60,15 @@ h3 {
     margin: 0 auto;
 }
 
-input{
-    width:100px;
+input, select {
+    width:120px;
     text-align:right;
-    margin: 2px 0;
     border:1px solid #bbb;
+    float:right;
+}
+
+input[type="checkbox"] {
+    width:auto;
 }
 
 input#carreresInput {
@@ -83,6 +87,22 @@ label#carreresLabel {
     width:100%;
 }
 
+.form-row {
+    margin:2px 0;
+    padding:0;
+    width:100%;
+    float:left;
+}
+
+#llindarselect-cb {
+    float:right;
+    width:120px;
+}
+
+.form-row#llindarselect-cb select {
+    float:left;
+}
+
 .resultat {
     font-weight:bold;
 }
@@ -92,16 +112,24 @@ label#carreresLabel {
     font-weight:bold;
 }
 
+#resultat-import-pta, #resultat-import-dracma {
+    font-weight: normal;
+    font-style: italic;
+}
+.import-multilinia {
+    line-height:250%;
+}
 .botons {
     text-align:right;
     width:100%;
 }
-#botoCalc {
+
+input#botoCalc {
     margin-top:10px;
-    padding: 10px 50px;
+    padding: 15px;
     width:100px;
     font-weight: bold;
-    text-align:center
+    text-align:center;
 }
 
 .error{  
@@ -121,6 +149,88 @@ border: 1px solid silver;
 padding:10px;
 }
 
-.taula-increments theader, .taula-increments.col1 {
+.taula-increments theader, .taula-increments.col1 , .taula-increments thead , .taula-etiq {
     font-weight:bold;
+}
+
+#info-trams {
+display:none;
+}
+
+.resultat {
+    display:none;
+}
+
+.resultat-import-anterior, #resultat-import-p, #resultat-diferencia-preus {
+    font-weight:bold;
+}
+
+#resultat-sense-llindar {
+    display:none;
+}
+
+.form-pla-estudis, .form-credits {
+    width:100%;
+    float:left;
+} 
+
+
+/* calculadora de llindar */
+#calculadora-llindar {
+    float:left;
+    clear:both;
+    padding:10px;
+    margin-right:5px;
+    background-color:#ccc;    
+}
+
+#calculadora-llindar #calculadora-llindar-form  {
+    width:100%;
+    margin: 0 auto;
+    float:left;
+}
+
+#calculadora-llindar #calculadora-llindar-form #llindar-col-esquerra {
+    width:335px;
+    float:left;
+}
+#calculadora-llindar #calculadora-llindar-form #llindar-resultats {
+    width:160px;
+    float:left;
+    font-size:1.5em;
+    line-height:150%;
+    font-weight:bold;
+    text-align:center;
+    margin: 27px 23px;
+}
+
+#calculadora-llindar #calculadora-llindar-form label  {
+    width:260px;
+    clear:both;
+    float:left;
+}
+
+#calculadora-llindar #calculadora-llindar-form input, #calculadora-llindar #calculadora-llindar-form select {
+    width:70px;
+}
+
+#calculadora-llindar #calculadora-llindar-form .form-row {
+    width:auto;
+}
+
+.destacat {
+    background-color: #ccc;
+    padding:7px;
+}
+
+#imports-x-llindar {
+    text-align:center;
+}
+
+#imports-x-llindar td {
+    width:40px;
+}
+
+#imports-x-llindar  td.taula-etiq {
+    width:60px;
 }

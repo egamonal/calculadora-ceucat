@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--
     This file is part of Calculadora-CdE
 
@@ -14,8 +14,9 @@
 
     You should have received a copy of the Affero GNU General Public License
     along with Calculadora-CdE.  If not, see <http://www.gnu.org/licenses/>.
-   
+
     1.0 23 April 2012
+    1.1 29 Juny  2012
 
     © Copyright 2012
     Eduard Gamonal <eduard.gamonal at est.fib.upc dot edu>
@@ -24,157 +25,189 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="calculadora.css" type="text/css">
-	<!--<script src="lib/jquery.js" type="text/javascript"></script>-->
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="calculadora.css" type="text/css">
+    <!--<script src="lib/jquery.js" type="text/javascript"></script>-->
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-	<script src="lib/carreres.js" type="text/javascript"></script>
-    <script src="lib/validation.js" type="text/javascript"></script>
-	<meta content="Calculadora de preus de matr&iacute;cula per a la universitat (p&uacute;blica) pel curs 2012-13" name="description">
-    <meta property="og:title" content="Calculadora d'increment del preu de la matrícula" />
-    <meta property="og:description" content="El proper curs les matrícules universitàries s'encariran més d'un 66% (p.ex. de 770€/quadrimestre a 1280€). Amb aquesta calculadora pots aproximar quant hauràs de pagar." />
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script src="lib/data.js" type="text/javascript"></script>
+    <script src="lib/business-logic.js" type="text/javascript"></script>
+    <script src="lib/view-validation.js" type="text/javascript"></script>
+    <meta content="Calculadora de preus de matr&iacute;cula per a la universitat (p&uacute;blica) pel curs 2012-13" name="description">
+    <meta property="og:title" content="Calculadora de preu de la matrícula" />
+    <meta property="og:description" content="Wert, Mas-Collell i Castellà han decidit fer una universitat vintage on sigui més important tenir diners que talent. Pugen més d'un 50% els preus pel 60% d'estudiants. Exclusió i endeutament. #sensetaxes" />
 </head>
 
 <body>
 <div id="wrapper">
-    <!--<h1>Calculadora de preus de matr&iacute;cula</h1>
-    <p class="lead">Calcula com ha crescut la <em>barrera econ&ograve;mica</em> per accedir a la universitat p&uacute;blica.</p>
-    <div id="discurs">
-        <p>El Consell de Ministres de l'estat espanyol ha aprovat un 
-        <a href="http://boe.es/boe/dias/2012/04/21/pdfs/BOE-A-2012-5337.pdf">reial decret - llei</a> 
-        que permet a les comunitats autònomes pujar l'import de les matrícules
-        dels estudis universitaris fins el 25% (segons els <em>seus</em>
-         càlculs) del cost de la universitat.</p>
-        <p>Ara és el moment de la <em>Generalitat</em>, que ha decidir quin augment 
-        de preus aplica.</p>
-        <p>Aquí teniu un simulador per calcular <strong>quant us 
-        pot arribar a costar la matrícula el curs vinent</strong>. De moment el 
-        CEUCAT <a href="http://www.ceucat.cat/noticies/els-universitaris-catalans-s2019oposen-a-les-mesures-anunciades-pel-ministre-wert">ja s'ha oposat a aquest <strong>augment absolutament 
-        desproporcionat</strong></a>.</p><p>A mesura que la Generalitat vagi concretant més dades, anirem actualitzant aquest simulador.</p>
-    </div>-->
-    
+
     <div id="col-esquerra">
         <div id="calculadora">
             <form method="POST" id="calculadoraForm"  action="#">
+                <div class="form-pla-estudis">
                 <h2>Pla d'estudis</h2>
-                
+
                 <div>
                     <label for="carreresInput" id="carreresLabel">Quina carrera fas?</label>
                     <input id="carreresInput" >
-                    <span id="carreraInfo"></span>  
+                    <span id="carreraInfo"></span>
                 </div>
-
+                </div>
+                
+                <div class="form-credits">
                 <h2 id="titol-credits">Cr&egrave;dits a matricular</h2>
-                <div>
+                <div class="form-row">
                     <label for="credits1">1a vegada</label>
                     <input type="text" value="" size="15" id="credits1" name="credits1">
                     <span id="credits1Info"></span>
                 </div>
-                
-                <div>
+
+                <div class="form-row">
                     <label for="credits2">2a vegada</label>
                     <input type="text" value="" size="15" id="credits2" name="credits2">
                     <span id="credits2Info"></span>
 
                 </div>
-                
-                <div>
+
+                <div class="form-row">
                     <label for="credits3">3a vegada</label>
                     <input type="text" value="" size="15" id="credits3" name="credits3">
-                    <span id="credits3Info"></span>  
+                    <span id="credits3Info"></span>
                 </div>
-                
-                <div>
+
+                <div class="form-row">
                     <label for="credits4">4a vegada o m&eacute;s</label>
                     <input type="text" value="" size="15" id="credits4" name="credits4">
-                    <span id="credits4Info"></span>  
+                    <span id="credits4Info"></span>
                 </div>
-				
-				<div>
+
+                <div class="form-row">
                     <label for="tipusMatricula">Matrícula</label>
-					<select id="tipusMatricula" name="tipusMatricula">
-					  <option value="quadrimestral">Quadrimestral</option>
-					  <option value="semestral">Semestral</option>
-					  <option value="anual">Anual</option>
-					</select> 
+                    <select id="tipusMatricula" name="tipusMatricula">
+                      <option value="quadrimestral">Quadrimestral</option>
+                      <option value="semestral">Semestral</option>
+                      <option value="anual">Anual</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="llindar">Llindar de la renda</label>
+                    <label for="llindarcheckbox" style="display:none;">Marca la casella si no saps què és el llindar</label>
+                    <div id="llindarselect-cb">
+                        <select id="llindar" name="llindar">
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                        </select>  <br />
+                        <input type="checkbox" name="llindarcheckbox" id="llindarcheckbox" value="NA" />No el sé
+                    </div>
+                </div>
+                
                 </div>
                 
                 <div class="botons">
                     <input type="button" value="Calcula" id="botoCalc" name="botoCalc">
+                    <div style="clear:both;"> </div>
                 </div>
             </form>
         </div>
 
     </div>
     <div id="resultats">
+    
         <h2>Import de la propera matrícula </h2>
-        <p>Entre <span id="resultat-import-min" class="gran" >_________</span> i <span id="resultat-import-max" class="gran">_________</span></p>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ceucat.cat/calculadora" data-lang="en" data-text="Amb la calculadora de preus sé quant pagaré a la propera matrícula: un 66% més. Aturem les barreres econòmiques">Tweet</a>
+        <div class="gran"><div class="resultat-sense-llindar" id="cost-sense-llindar"></div></div>
+        <div class="import-multilinia">
+            <span id="resultat-import" class="gran" ><small>[no calculat]</small></span> 
+            <p class="resultat"><span id="resultat-import-pta" ></span>, <span id="resultat-import-dracma" ></span></p>
+        </div>
+        <div class="twitter-share-button-wrapper"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ceucat.cat/calculadora" data-lang="en" data-hashtags="sensetaxes" data-text="Wert, Mas-Collell i Castellà volen una universitat d'exclusió i endeutament. Nosaltres no.">Tweet</a></div>
         <div class="fb-like" data-href="http://www.ceucat.cat/calculadora" data-send="true" data-width="620" data-show-faces="false" data-font="arial"></div>
         
-        <p>Si el govern opta per la <em>banda baixa</em> de la forquilla de preus, hauràs de pagar aproximadament <span id="resultat-import-min-p" class="resultat">______</span>. Si opta per la <em>banda alta</em>, <span id="resultat-import-max-p" class="resultat">______</span>.</p>
-        <p>Fantàstic, oi? Comparteix-ho al Facebook i ajuda'ns a fer pressió per tenir una universitat pública al servei de la societat.
-        <a name="fb_share">Comparteix</a> 
+        <p>Amb els preus de l'any passat haguessis pagat <span class="resultat-import-anterior"><small>[no calculat]</small></span>.</p>
+        <p>Després de l'anunci de la Generalitat del 29-06-12 la diferència és: <span class="resultat"><em><span id="resultat-import-p"></span> &dash; <span class="resultat-import-anterior"></span> = <span id="resultat-diferencia-preus"></span></em></span></p>
+        
+        <!--<p>Amb el teu tram, el <span id="resultat-num-tram" ></span>, </p>-->
+        <div class="a-mida-llindar-0" style="display:none">
+            <p class="destacat">Recorda que el llindar 0 és <strong>només per becaris del <acronym title="Ministerio de educación y ciencia">MECD</acronym></strong></p>
+        </div>
 
+        <div class="a-mida-llindar-1" style="display:none">
+            <p class="destacat">Perquè se t'apliquin els preus d'aquest llindar hauràs de demanar la beca EQUITAT a l'AGAUR.</p>
+        </div>
+        
+        <div class="a-mida-llindar-2" style="display:none">
+            <p class="destacat">Perquè se t'apliquin els preus d'aquest llindar hauràs de demanar la beca EQUITAT a l'AGAUR.</p>
+        </div>
+        
+        <div class="a-mida-llindar-3" style="display:none">
+            <p class="destacat">Perquè se t'apliquin els preus d'aquest llindar hauràs de demanar la beca EQUITAT a l'AGAUR.</p>
+        </div>
+        
+        <div class="a-mida-llindar-4" style="display:none">
+            <p class="destacat">Perquè se t'apliquin els preus d'aquest llindar hauràs de demanar la beca EQUITAT a l'AGAUR.</p>
+        </div>
+        
+        <div class="a-mida-llindar-5" style="display:none">
+            <p class="destacat">Perquè se t'apliquin els preus d'aquest llindar hauràs de demanar la beca EQUITAT a l'AGAUR.</p>
+        </div>
+        
         </p>
-        <h3>Desglossament</h3>
-        <p>
-            Assumint la pujada mínima:
+        
+        <div class="resultat-amb-llindar">
+            <h3>Desglossament</h3>
+        
+            <p>Amb el <strong>llindar <span class="num-llindar"><small>[no calculat]</small></span></strong>:</p>
            <ul>
-            <li>Crèdits de 1a vegada: <span class="resultat-cr1 resultat"></span> &mdash; <span id="resultat-min-cr1-import" class="resultat"></span></li>
-            <li>Crèdits de 2a vegada: <span class="resultat-cr2 resultat"></span> &mdash; <span id="resultat-min-cr2-import" class="resultat"></span></li>
-            <li>Crèdits de 3a vegada: <span class="resultat-cr3 resultat"></span> &mdash; <span id="resultat-min-cr3-import" class="resultat" ></span></li>
-            <li>Crèdits de 4a vegada i successives: <span class="resultat-cr4 resultat"></span> &mdash; <span id="resultat-min-cr4-import" class="resultat"></span></li>
-            <li>Taxes pròpies: matrícula <span class="resultat-quadris resultat">______</span> &mdash;  <span class="resultat-taxes resultat">______</span></li>
+            <li>Crèdits de 1a vegada: <span class="resultat-cr1 resultat"></span> &mdash; <span id="resultat-cr1-import" class="resultat"></span></li>
+            <li>Crèdits de 2a vegada: <span class="resultat-cr2 resultat"></span> &mdash; <span id="resultat-cr2-import" class="resultat"></span></li>
+            <li>Crèdits de 3a vegada: <span class="resultat-cr3 resultat"></span> &mdash; <span id="resultat-cr3-import" class="resultat" ></span></li>
+            <li>Crèdits de 4a vegada i successives: <span class="resultat-cr4 resultat"></span> &mdash; <span id="resultat-cr4-import" class="resultat"></span></li>
+            <li>Taxes pròpies: matrícula <span class="resultat-quadris resultat"><small>[no calculat]</small></span> &mdash;  <span class="resultat-taxes resultat"><small>[no calculat]</small></span></li>
            </ul>
-           
-           Assumint la pujada màxima:
-            <ul>
-            <li>Crèdits de 1a vegada: <span class="resultat-cr1 resultat"></span> &mdash; <span id="resultat-max-cr1-import" class="resultat"></span></li>
-            <li>Crèdits de 2a vegada: <span class="resultat-cr2 resultat"></span> &mdash; <span id="resultat-max-cr2-import" class="resultat"></span></li>
-            <li>Crèdits de 3a vegada: <span class="resultat-cr3 resultat"></span> &mdash; <span id="resultat-max-cr3-import" class="resultat"></span></li>
-            <li>Crèdits de 4a vegada i successives: <span class="resultat-cr4 resultat"></span> &mdash; <span id="resultat-max-cr4-import" class="resultat"></span></li>
-            <li>Taxes pròpies: matrícula <span class="resultat-quadris resultat">______</span> &mdash; <span class="resultat-taxes resultat" >______</span></li>
-           </ul>
-        </p>
-        <!--<h3>Càlcul</h3>
-        <p>S'ha fet amb les següents dades:
-            <ul>
-                <li>Supòsit (fals) del govern: l'estudiant paga el <b>15%</b> del cost. Això surt de fer una divisió trivial pressupost/numEstudiants.</li>
-                <li>En el curs actual 1 crèdit de <span id="resultat-carrera" class="resultat"></span> té un preu de <span id="resultat-preu-credit" class="resultat"></span>.</li>
-                <li>El govern de l'estat espanyol ha escrit al BOE uns increments i una forquilla de preus que pot utilitzar la Generalitat.
-                El denominador és el supòsit del 15%. Així, pots llegir la primera columna com <i>El preu dels crèdits que matriculi per primera vegada serà o el que pago ara (15/15) o el 25% (25/15) del cost (fals) dels estudis</i>
-                    <table class="taula-increments">
-                      <tbody>
-                        <tr>
-                          <th></th>
-                          <th>1</th>
-                          <th>2</th>
-                          <th>3</th>
-                          <th>4</th>
-                        </tr>
-                        <tr>
-                          <td class="taula-increments col1">mín</td>
-                          <td>15/15</td>
-                          <td>30/15</td>
-                          <td>65/15</td>
-                          <td>90/15</td>
-                        </tr>
-                        <tr>
-                          <td class="taula-increments col1">màx</td>
-                          <td>25/15</td>
-                          <td>40/15</td>
-                          <td>75/15</td>
-                          <td>100/15</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                </li>
-                <li>Les taxes pròpies de cada universitat es paguen només un cop l'any i són iguals en totes. S'ha fet aquesta aproximació perquè són 1 o 2 ordres de magnitud menors que l'import de la matrícula.</li>
-                <li>IPC = 1.9%.</li>
-            </ul>
-        </p>-->
+        </div>
+        <!-- <div class="resultat-amb-llindar">
+            <a href="#" id="commuta-llindars" >Tots els llindars</a>
+        </div>
+         <div class="resultat-sense-llindar" id="info-trams"> -->
+            
+            <h3>Llindars</h3>
+            <p>Si no saps quin és el teu llindar, pots consultar les <a href="http://premsa.gencat.cat/pres_fsvp/docs/2012/06/29/14/15/b08792ab-3392-4dcf-86d9-43b616f8af83.pdf">diapositives de la Secretaria d'Universitats i Recerca</a> (pàg 24).</p>
+            <p>La taula de sota mostra l'import que pagaries en cadascun dels casos i el percentatge d'estudiants estimat que són típicament en cada llindar.</p>
+            <table id="imports-x-llindar" class="taula-increments">
+                <thead>
+                    <td>Llindar</td> <td>0</td> <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+                </thead>
+                <tr>
+                    <td class="taula-etiq">Estudiants</td> <td>15%</td> <td>10%</td><td>5%</td><td>5%</td><td>5%</td><td>20%</td><td>40%</td>
+                </tr>
+                <tr>                
+                    <td class="taula-etiq">Increment</td> 
+                    <td>&dash;</td> 
+                    <td>&dash;</td> 
+                    <td>0%</td>
+                    <td>16.7%</td>
+                    <td>33.3%</td>
+                    <td>50%</td>
+                    <td>66.7%</td>
+                </tr>
+                <tr>
+                    <td class="taula-etiq">Import</td> 
+                    <td><span id="resultat-import-llindar-0"></span></td> 
+                    <td><span id="resultat-import-llindar-1"></span></td> 
+                    <td><span id="resultat-import-llindar-2"></span></td>
+                    <td><span id="resultat-import-llindar-3"></span></td>
+                    <td><span id="resultat-import-llindar-4"></span></td>
+                    <td><span id="resultat-import-llindar-5"></span></td>
+                    <td><span id="resultat-import-llindar-6"></span></td>
+                </tr>
+                
+            </table>
+        <!--</div>-->
     </div>
 </div>
 </body>
